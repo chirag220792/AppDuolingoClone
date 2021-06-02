@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppDuolingoClone.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -28,7 +29,17 @@ namespace AppDuolingoClone.Views
         protected override void OnCurrentPageChanged()
         {
             base.OnCurrentPageChanged();
-            System.Diagnostics.Debug.WriteLine("the flap has changed");
+            //System.Diagnostics.Debug.WriteLine("the flap has changed");
+
+            //Title = DateTime.Now.ToString();
+            if(CurrentPage is IDynamicTitle page)
+            {
+                NavigationPage.SetHasNavigationBar(this, true);
+                NavigationPage.SetTitleView(this, page.GetTitle());
+                return;
+            }
+            NavigationPage.SetHasNavigationBar(this, false);
+            //NavigationPage.SetTitleView(this, new Label { Text = DateTime.Now.ToString(), BackgroundColor = Color.Fuchsia });
         }
     }
 }
