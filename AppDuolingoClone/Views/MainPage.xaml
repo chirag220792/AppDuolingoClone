@@ -5,8 +5,8 @@
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
-            BarBackgroundColor="#2196F3"
-            BarTextColor="White"
+            BarBackgroundColor="White"
+            BarTextColor="Black"
             mc:Ignorable="d"
             x:Class="AppDuolingoClone.Views.MainPage"
             Title="Titulo App" />
