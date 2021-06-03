@@ -17,9 +17,9 @@ namespace AppDuolingoClone.Views
             InitializeComponent();
 
             Children.Add(new LessonsView());
-
-            if(Device.RuntimePlatform == Device.iOS)
-                Children.Add(new TrainingView());
+            Children.Add(new TrainingView());
+            //if(Device.RuntimePlatform == Device.iOS)
+            //    Children.Add(new TrainingView());
 
             Children.Add(new ProfileView());
             Children.Add(new RankingView());

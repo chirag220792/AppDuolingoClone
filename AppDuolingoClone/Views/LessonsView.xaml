@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:AppDuolingoClone.Controls"
-             x:Class="AppDuolingoClone.Views.LessonsView"
-             Title="Lessons">
+             x:Class="AppDuolingoClone.Views.LessonsView">
     <ContentPage.Content>
         <StackLayout>
             <ScrollView
@@ -20,7 +19,7 @@
             
             <controls:FormsFloatingActionButton
                 IsVisible="{OnPlatform Android=true, iOS=false}"
-                BackgroundColor="Black"
+                BackgroundColor="White"
                 AbsoluteLayout.LayoutBounds="1,1,1,1"
                 AbsoluteLayout.LayoutFlags="All"
                 HorizontalOptions="End"

@@ -1,7 +1,8 @@
 ﻿using Android.Content;
+using Android.Support.Design.BottomNavigation;
 using Android.Support.Design.Widget;
 using AppDuolingoClone.Droid.Renderers;
-using AppDuolingoClone.Views;
+using AppDuolingoClone.Interfaces;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Xamarin.Forms.Platform.Android.AppCompat;
@@ -32,60 +33,53 @@ namespace AppDuolingoClone.Droid.Renderers
                 _bottomNavigationView.SetMinimumHeight(300);
                 _bottomNavigationView.ItemIconTintList = null;
                 _bottomNavigationView.ItemIconSize = 150;
-                UpdateAllTabs(_formsTabs, _bottomNavigationView);
+                _bottomNavigationView.SetShiftMode(false, false);
+                _bottomNavigationView.LabelVisibilityMode = LabelVisibilityMode.LabelVisibilityUnlabeled;
+
+
+                UpdateAllTabs();
+            }
+
+            if(e.OldElement != null)
+            {
+                _formsTabs.CurrentPageChanged -= OnCurrentPageChanged;
             }
 
         }
-        private void UpdateAllTabs(TabbedPage formsTabs, BottomNavigationView bottomNavigationView)
+        private void UpdateAllTabs()
         {
-            for (var index = 0; index < formsTabs.Children.Count; index++)
+            for (var index = 0; index < _formsTabs.Children.Count; index++)
             {
-                var androidTab = bottomNavigationView.Menu.GetItem(index);
-                if (formsTabs.Children[index] is LessonsView)
+                var androidTab = _bottomNavigationView.Menu.GetItem(index);
+                int iconId;
+
+                if (_formsTabs.Children[index] is ITabPageIcons tabPage)
                 {
-                    if (formsTabs.Children[index] == formsTabs.CurrentPage)
+                    if (_formsTabs.Children[index] == _formsTabs.CurrentPage)
                     {
-                        androidTab.SetIcon(Resource.Drawable.tab_lessons_selected);
+                        iconId = GetIconIdByFileName(tabPage.GetSelectedIcon());
+                        androidTab.SetIcon(iconId);
                         continue;
+
                     }
-                    androidTab.SetIcon(Resource.Drawable.tab_lessons);
+
+                    iconId = GetIconIdByFileName(tabPage.GetIcon());
+                    androidTab.SetIcon(iconId);
                     continue;
+
                 }
-                if (formsTabs.Children[index] is ProfileView)
-                {
-                    if (formsTabs.Children[index] == formsTabs.CurrentPage)
-                    {
-                        androidTab.SetIcon(Resource.Drawable.tab_profile_selected);
-                        continue;
-                    }
-                    androidTab.SetIcon(Resource.Drawable.tab_profile);
-                    continue;
-                }
-                if (formsTabs.Children[index] is RankingView)
-                {
-                    if (formsTabs.Children[index] == formsTabs.CurrentPage)
-                    {
-                        androidTab.SetIcon(Resource.Drawable.tab_ranking_selected);
-                        continue;
-                    }
-                    androidTab.SetIcon(Resource.Drawable.tab_ranking);
-                    continue;
-                }
-                if (formsTabs.Children[index] is StoreView)
-                {
-                    if (formsTabs.Children[index] == formsTabs.CurrentPage)
-                    {
-                        androidTab.SetIcon(Resource.Drawable.tab_store_selected);
-                        continue;
-                    }
-                    androidTab.SetIcon(Resource.Drawable.tab_store);
-                    continue;
-                }
+                
             }
         }
+
+        private int GetIconIdByFileName(string fileName)
+        {
+            return Resources.GetIdentifier(fileName, "drawable", Context.PackageName);
+        }
+
         private void OnCurrentPageChanged(object sender, System.EventArgs e)
         {
-            UpdateAllTabs(_formsTabs, _bottomNavigationView);
+            UpdateAllTabs();
             //System.Diagnostics.Debug.WriteLine("");
         }
     }
