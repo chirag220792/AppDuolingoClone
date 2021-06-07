@@ -21,7 +21,7 @@ namespace AppDuolingoClone.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App(new iOsInitializer));
+            LoadApplication(new App(new iOsInitializer()));
 
             return base.FinishedLaunching(app, options);
         }

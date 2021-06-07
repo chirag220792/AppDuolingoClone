@@ -4,7 +4,32 @@
              x:Class="AppDuolingoClone.Views.TitleViews.StoreTitleView">
   <ContentView.Content>
       <StackLayout>
-          <Label Text="Store Dynamic TitleView"/>
+          <Grid Margin="{OnPlatform Android='0,0,15,0', iOS='0'}">
+          <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="100"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="100"/>
+          </Grid.ColumnDefinitions>
+
+          
+          <Label Grid.Column="1"
+                 Text="Loja"
+                 HorizontalTextAlignment="Center"
+                 VerticalOptions="Center"
+                 FontSize="Large"
+                 TextColor="#b0afaf"/>
+
+          <StackLayout Grid.Column="2"
+                       Orientation="Horizontal">
+              <Image Source="navbar_diamont"
+                     HeightRequest="40"/>
+
+              <Label Text="204"
+                     VerticalTextAlignment="Center"
+                     FontSize="Large"
+                     TextColor="#d35c56"/>
+          </StackLayout>
+          </Grid>
       </StackLayout>
   </ContentView.Content>
 </ContentView>

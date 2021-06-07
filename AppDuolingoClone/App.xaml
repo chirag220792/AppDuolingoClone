@@ -7,6 +7,28 @@
              mc:Ignorable="d"
              x:Class="AppDuolingoClone.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <OnPlatform
+                x:Key="FontBold"
+                x:TypeArguments="x:String"
+                Android="Fonts/DINNextRoundedLTPro-Bold.ttf#DINNextRounded"
+                iOS="DINNextRoundedLTPro-Bold" />
 
+            <OnPlatform
+                x:Key="FontRegular"
+                x:TypeArguments="x:String"
+                Android="Fonts/DINNextRoundedLTPro-Regular.ttf#DINNextRounded"
+                iOS="DINNextRoundedLTPro-Regular" />
+
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontBold}" />
+            </Style>
+
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="White"/>
+                
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>
